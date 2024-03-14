@@ -1,18 +1,21 @@
 import math
 
-# Общее количество кнопок
-total_buttons = 10
+# Количество испытаний (лампочек)
+n = 5000
 
-# Количество кнопок, которые нужно нажать одновременно
-required_buttons = 3
+# Вероятность перегорания одной лампочки
+p = 0.0004
 
-# Количество благоприятных исходов (количество сочетаний)
-favorable_outcomes = math.comb(total_buttons, required_buttons)
+# Лямбда для распределения Пуассона
+lambda_value = n * p
 
-# Общее количество возможных исходов (общее количество сочетаний)
-total_outcomes = math.comb(total_buttons, required_buttons)
+# Вероятность того, что ни одна лампочка не перегорит в первый день
+probability_none_burn_out = math.exp(-lambda_value)
 
-# Вероятность открытия двери с первой попытки
-probability_first_attempt = favorable_outcomes / total_outcomes
+print("Вероятность того, что ни одна лампочка не перегорит в первый день:", probability_none_burn_out)
 
-print("Вероятность открытия двери с первой попытки:", probability_first_attempt,"%")
+# Вероятность того, что перегорят ровно две лампочки
+k = 2
+probability_two_burn_out = (lambda_value ** k) * math.exp(-lambda_value) / math.factorial(k)
+
+print("Вероятность того, что перегорят ровно две лампочки:", probability_two_burn_out)

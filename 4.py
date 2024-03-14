@@ -1,21 +1,19 @@
+# Импорт библиотеки для вычисления комбинаторики
 import math
 
-# Количество выигрышных билетов
-winning_tickets = 2
+# Вероятность того, что все мячи белые
+probability_all_white = (math.comb(7, 2) / math.comb(10, 2)) * (math.comb(9, 2) / math.comb(11, 2))
 
-# Общее количество билетов
-total_tickets = 100
+# Вероятность того, что ровно два мяча белые
+# Для первого случая: 2 белых мяча из первого ящика и 2 небелых мяча из второго ящика
+probability_two_white_case1 = (math.comb(7, 2) / math.comb(10, 2)) * (math.comb(2, 2) / math.comb(11, 2))
+# Для второго случая: 2 небелых мяча из первого ящика и 2 белых мяча из второго ящика
+probability_two_white_case2 = (math.comb(3, 2) / math.comb(10, 2)) * (math.comb(9, 2) / math.comb(11, 2))
+probability_two_white = probability_two_white_case1 + probability_two_white_case2
 
-# Количество билетов, которые нужно приобрести
-purchased_tickets = 2
+# Вероятность того, что хотя бы один мяч белый
+probability_at_least_one_white = 1 - ((math.comb(3, 2) / math.comb(10, 2)) * (math.comb(2, 2) / math.comb(11, 2)))
 
-# Количество благоприятных исходов (сочетаний из 2 выигрышных билетов)
-favorable_outcomes = 1
-
-# Общее количество исходов (общее количество сочетаний билетов)
-total_outcomes = math.comb(total_tickets, purchased_tickets)
-
-# Вероятность того, что оба приобретенных билета окажутся выигрышными
-probability_both_winning = favorable_outcomes / total_outcomes
-
-print("Вероятность того, что оба приобретенных билета окажутся выигрышными:", probability_both_winning)
+print("Вероятность того, что все мячи белые:", probability_all_white)
+print("Вероятность того, что ровно два мяча белые:", probability_two_white)
+print("Вероятность того, что хотя бы один мяч белый:", probability_at_least_one_white)
